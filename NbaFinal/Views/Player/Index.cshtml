@@ -1,0 +1,18 @@
+﻿@model IEnumerable<NbaFinal.Models.Player>
+
+@(Html.DevExtreme().DataGrid()
+    .ID("playerGrid")
+    .DataSource(Model)
+    .Paging(p => p.Enabled(true))
+    .Columns(c =>
+    {
+    c.Add().DataField("PlayerID");
+    c.Add().DataField("PlayerName");
+    c.Add().DataField("EffMin");
+    c.Add().DataField("Link").CellTemplate(@<text>
+        <div>
+            <a href="@Url.Action("Edit")/<%= data.PlayerID %>">Edit</a>
+        </div>
+        </text>);
+    })
+)
